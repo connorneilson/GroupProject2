@@ -1,0 +1,49 @@
+:root {
+    background-color: lightgoldenrodyellow;
+    font-size: 62.5%;
+}
+
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.home{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+h1{
+    font-size: 7rem;
+    color: lightblue;
+    margin-bottom: 5rem;
+}
+
+h2{
+    font-size: 2rem;
+    margin-bottom: 5rem;
+    color: lightblue;
+}
+
+
+
+.button{
+    text-decoration: none;
+    font-size: 1.5rem;
+    background-color: white;
+    width: 20rem;
+    padding: 1rem;
+    text-align: center;
+    border: .2rem solid lightblue;
+    margin-bottom: 1rem;
+    color: lightblue;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="canada.css">
+</head>
+<body>
+
+    <div class="home">
+        <h1>Test your knowledge on Canada!</h1>
+        
+        <p id="question"></p>
+        <button id="answer1"></button>
+        <button id="answer2"></button>
+        <button id="answer3"></button>
+        <button id="answer4"></button>
+    </div>
+    
+
+    <script>
+
+        const question = document.getElementById("question");
+        const choices = Array.from(document.getElementByClassName("choice-text"));
+
+        let currentQuestion = {};
+        let acceptAnswers = true;
+        let score = 0;
+        let questionCounter = 0;
+        let availableQuestions = [];
+        let questions = [];
+
+        fetch('https://the-trivia-api.com/v2/questions?tags=canada')
+        .then((response)=>response.json())
+        .then((data)=> {
+        console.log("data",data)
+        questions = data;
+        startQuiz();
+        
+
+        // for(i=0;i<=data.length;i++){
+        //     document.querySelector("#question").innerHTML = `Question: ${data[i].question.text}`
+        //     document.querySelector("#answer1").innerHTML = `A: ${data[i].correctAnswer}`
+        //     document.querySelector("#answer2").innerHTML = `B: ${data[i].incorrectAnswers[0]}`
+        //     document.querySelector("#answer3").innerHTML = `C: ${data[i].incorrectAnswers[1]}`
+        //     document.querySelector("#answer4").innerHTML = `D: ${data[i].incorrectAnswers[2]}`
+        // }
+        })
+        .catch((error)=>console.log(error));
+
+        function startQuiz(){
+            questionCounter =0;
+            score =0;
+            availableQuestions= [...questions]
+            console.log(availableQuestions);
+            getNewQuestion();
+        }
+
+        function getNewQuestion(){
+            if(availableQuestions.length=0 || questionCounter)
+            questionCounter++;
+           const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+           currentQuestion = availableQuestions[questionIndex];
+           question.innerText = currentQuestion.question;
+          
+
+           availableQuestions.splice(questionIndex,1);
+
+           acceptAnswers=true
+        }
+        
+        choices.addEventListener("click",e =>{
+            acceptAnswers=false;
+            const selectedChoice = e.target;
+            const selectedAnswer = selectChoice.dataset["number"];
+            getNewQuestion();
+        });
+        
+        
+    </script>
+
+</body>
+</html>
